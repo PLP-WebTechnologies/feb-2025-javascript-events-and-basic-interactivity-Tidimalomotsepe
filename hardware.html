@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Computer Shop</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        font-family: Arial, sans-serif;
+      }
+
+      .btn {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #515355;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #c43cc1;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(45deg, #3b3a3a, #414040);
+        line-height: 1.5;
+        padding: 5px 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(112, 107, 107, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .highlight:hover {
+        background: linear-gradient(45deg, #272526, #ff6b6b);
+        box-shadow: 0 6px 8px rgba(74, 71, 71, 0.2);
+      }
+
+      .image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .image-item img {
+        display: block;
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .title {
+        margin-top: 10px;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .welcome-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/135/753/original/pexels-pixabay-159376.jpg?1722028826");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        text-align: center;
+      }
+
+      .welcome-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        padding: 20px;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      em {
+        font-style: italic;
+      }
+
+      p {
+        color: #363836;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .form-section {
+        margin: 40px auto;
+        max-width: 400px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #f9f9f9;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .error {
+        color: red;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <strong><h2>COMPUTER SHOP</h2></strong>
+
+    <div class="welcome-container" ondblclick="showSecretMessage()">
+      <div class="welcome-text">
+        <h1>Find any form of computer</h1>
+        <a href="https://www.geeksforgeeks.org/types-of-computers/">Forms of computers and use</a>
+      </div>
+    </div>
+
+    <p>
+      Empowering Your Digital World is our mission. We offer the latest in
+      high-performance desktops, laptops, and cutting-edge accessories. Whether
+      you're a gamer, a professional, or a tech enthusiast, we provide the tools
+      you need to excel.
+    </p>
+
+    <hr />
+    <h1>Features</h1>
+    <div class="image-container">
+      <div class="image-item">
+        <div class="title"><span class="highlight">Computer Mouse</span></div>
+        <img src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/135/867/original/vecteezy_computer-mouse-icon-free-illustration_22984348.png?1722107289" alt="Mouse" />
+        <button class="btn" onclick="handleBuyNow(event)">Buy Now</button>
+      </div>
+
+      <div class="image-item">
+        <div class="title"><span class="highlight">Keyboard</span></div>
+        <img src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/135/866/original/vecteezy_computer-key-board-free-illustration_22983440.png?1722107254" alt="Keyboard" />
+        <button class="btn" onclick="handleBuyNow(event)">Buy Now</button>
+      </div>
+
+      <div class="image-item">
+        <div class="title"><span class="highlight">Headphones</span></div>
+        <img src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/135/886/original/vecteezy_headphone-on-white-background-isolate_3696744.jpg?1722112097" alt="Headphones" />
+        <button class="btn" onclick="handleBuyNow(event)">Buy Now</button>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Subscribe for Deals</h2>
+      <form id="signupForm" onsubmit="return validateForm(event)">
+        <label>Full Name:</label>
+        <input type="text" id="name" required />
+        <label>Email:</label>
+        <input type="email" id="email" required />
+        <label>Password:</label>
+        <input type="password" id="password" required />
+        <span id="feedback" class="error"></span><br />
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    // Buy Now Button
+    function handleBuyNow(event) {
+      event.target.textContent = "Added!";
+      let userName = prompt("What is your name?");
+      let userType = prompt("Are you a gamer, IT professional, or tech enthusiast?").toLowerCase();
+
+      if (userType === "gamer") {
+        alert("Hello " + userName + "! Check out our gaming range.");
+      } else if (userType === "it professional") {
+        alert("Welcome " + userName + "! You'll love our pro tools.");
+      } else if (userType === "tech enthusiast") {
+        alert("Hey " + userName + "! Explore the latest gadgets.");
+      } else {
+        alert("Hello " + userName + "! Thanks for stopping by.");
+      }
+    }
+
+    // Double Click Secret
+    function showSecretMessage() {
+      alert("🔥 Secret Deal: Use code TECH10 for 10% off!");
+    }
+
+    // Keypress detection
+    document.addEventListener("keydown", (e) => {
+      console.log("Key pressed:", e.key);
+    });
+
+    // Form Validation
+    function validateForm(e) {
+      e.preventDefault();
+      const password = document.getElementById("password").value;
+      const feedback = document.getElementById("feedback");
+
+      if (password.length < 8) {
+        feedback.textContent = "Password must be at least 8 characters.";
+        return false;
+      } else {
+        feedback.textContent = "";
+        alert("Form submitted successfully!");
+        return true;
+      }
+    }
+
+    // Real-time feedback
